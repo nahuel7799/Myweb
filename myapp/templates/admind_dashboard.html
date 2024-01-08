@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Admin Dashboard</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Subtitle</th>
+        <th>Author</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for blog in blogs %}
+        <tr>
+          <td>{{ blog.title }}</td>
+          <td>{{ blog.subtitle }}</td>
+          <td>{{ blog.author }}</td>
+          <td>{{ blog.date }}</td>
+          <td>
+            <a href="{% url 'edit_blog' blog.id %}">Edit</a> |
+            <a href="{% url 'delete_blog' blog.id %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'blog_list' %}">Back to Blog List</a>
+{% endblock %}
